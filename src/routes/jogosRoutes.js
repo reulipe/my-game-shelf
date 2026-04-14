@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { criarJogo, listarJogos } from '../store/jogosStore.js';
+import { criarJogo, listarJogos } from '../shelf/jogosShelf.js';
 import { validateCadastroJogo } from '../validation/validateCadastroJogo.js';
 
 /**

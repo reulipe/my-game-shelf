@@ -18,7 +18,7 @@ export function listarJogos() {
 }
 
 /** Limpa a estante e reinicia o contador de ids (útil em testes). */
-export function resetJogosStore() {
+export function resetJogosShelf() {
   jogos.length = 0;
   nextId = 1;
 }

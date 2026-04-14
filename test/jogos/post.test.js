@@ -6,7 +6,7 @@ import { expect } from 'chai';
 import request from 'supertest';
 
 import { createApp } from '../../src/app.js';
-import { resetJogosStore } from '../../src/store/jogosStore.js';
+import { resetJogosShelf } from '../../src/shelf/jogosShelf.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -24,7 +24,7 @@ describe('POST /jogos', () => {
   });
 
   beforeEach(() => {
-    resetJogosStore();
+    resetJogosShelf();
   });
 
   describe('sucesso (201)', () => {

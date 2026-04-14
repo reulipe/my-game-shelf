@@ -70,7 +70,7 @@ Após subir o servidor:
 
 A pasta **`mochawesome-report/`** é ignorada pelo Git (`.gitignore`) por ser artefato gerado.
 
-Os testes funcionais do **POST `/jogos`** usam **fixtures** em `test/jogos/fixtures/` e resetam o armazenamento em memória entre casos (`resetJogosStore` em `src/store/jogosStore.js`).
+Os testes funcionais do **POST `/jogos`** usam **fixtures** em `test/jogos/fixtures/` e resetam o armazenamento em memória entre casos (`resetJogosShelf` em `src/shelf/jogosShelf.js`).
 
 ## Funcionalidades
 
@@ -163,8 +163,8 @@ my-game-shelf/
 │   │   └── swagger.js         # OpenAPI para swagger-jsdoc + UI
 │   ├── routes/
 │   │   └── jogosRoutes.js     # GET/POST /jogos + anotações @openapi
-│   ├── store/
-│   │   └── jogosStore.js      # Memória, auto incremento do id, reset para testes
+│   ├── shelf/
+│   │   └── jogosShelf.js      # Memória, auto incremento do id, reset para testes
 │   └── validation/
 │       └── validateCadastroJogo.js
 └── test/
