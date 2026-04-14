@@ -1,0 +1,19 @@
+{
+  "name": "my-game-shelf-api",
+  "version": "1.0.0",
+  "description": "API em memória para cadastro e listagem de jogos na estante (Express + Swagger).",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
