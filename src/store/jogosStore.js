@@ -16,3 +16,9 @@ export function criarJogo(dados) {
 export function listarJogos() {
   return [...jogos];
 }
+
+/** Limpa a estante e reinicia o contador de ids (útil em testes). */
+export function resetJogosStore() {
+  jogos.length = 0;
+  nextId = 1;
+}

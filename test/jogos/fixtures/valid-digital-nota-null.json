@@ -1,0 +1,13 @@
+{
+  "titulo": "Celeste",
+  "plataforma": "Switch",
+  "tipoMidia": "digital",
+  "status": "nao_iniciado",
+  "notaPessoal": null,
+  "precoPago": 0,
+  "detalhesMidia": {
+    "lojaDigital": "eShop",
+    "licencaTipo": "resgate_codigo",
+    "statusLicenca": "ativa"
+  }
+}

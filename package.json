@@ -6,7 +6,9 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "test": "mocha \"test/**/*.test.js\" --reporter mochawesome",
+    "test:spec": "mocha \"test/**/*.test.js\" --reporter spec"
   },
   "engines": {
     "node": ">=18"
@@ -15,5 +17,11 @@
     "express": "^4.21.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.5.0",
+    "mocha": "^11.1.0",
+    "mochawesome": "^7.1.4",
+    "supertest": "^7.0.0"
   }
 }
