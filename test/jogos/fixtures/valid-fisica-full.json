@@ -1,0 +1,13 @@
+{
+  "titulo": "God of War Ragnarok",
+  "plataforma": "PS5",
+  "tipoMidia": "fisica",
+  "status": "nao_iniciado",
+  "precoPago": 249.9,
+  "moeda": "BRL",
+  "detalhesMidia": {
+    "formatoFisico": "disco",
+    "estadoMidia": "novo",
+    "regiao": "ALL"
+  }
+}

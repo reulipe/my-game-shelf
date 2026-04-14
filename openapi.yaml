@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: My Game Shelf API
+  version: 1.0.0
+  description: |
+    API para simular uma estante de jogos. Cadastro (POST /jogos) e listagem (GET /jogos).
+    Dados mantidos em memória. O `id` é gerado pelo servidor e não deve ser enviado no cadastro.
+servers:
+  - url: http://localhost:5622
+    description: Servidor local (porta padrão 5622)
+tags:
+  - name: Jogos
+    description: Operações sobre jogos da estante
+paths:
+  /jogos:
+    post:
+      tags: [Jogos]
+      summary: Cadastrar um jogo
+      description: |
+        Cria um jogo na estante. Valida regras de negócio; em falha retorna HTTP 422 com `errors[]`
+        (`field`, `code`, `message`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JogoCadastroRequest'
+      responses:
+        '201':
+          description: Jogo criado
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data]
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Jogo'
+        '422':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponse'
+    get:
+      tags: [Jogos]
+      summary: Listar jogos
+      responses:
+        '200':
+          description: Lista de jogos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Jogo'
+components:
+  schemas:
+    DetalhesMidiaDigital:
+      type: object
+      required: [lojaDigital, licencaTipo, statusLicenca]
+      properties:
+        lojaDigital:
+          type: string
+          description: Loja digital (Steam, PSN, eShop, etc.).
+        licencaTipo:
+          type: string
+          enum: [compra, assinatura, resgate_codigo]
+        statusLicenca:
+          type: string
+          enum: [ativa, expirada, removida]
+    DetalhesMidiaFisica:
+      type: object
+      required: [formatoFisico, estadoMidia, regiao]
+      properties:
+        formatoFisico:
+          type: string
+          enum: [disco, cartucho, colecionador]
+        estadoMidia:
+          type: string
+          enum: [novo, semi_novo, usado]
+        regiao:
+          type: string
+          example: R1
+    JogoCadastroRequest:
+      type: object
+      required: [titulo, plataforma, tipoMidia, status, precoPago, detalhesMidia]
+      properties:
+        titulo:
+          type: string
+        plataforma:
+          type: string
+        tipoMidia:
+          type: string
+          enum: [fisica, digital]
+        status:
+          type: string
+          enum: [nao_iniciado, jogando, zerado]
+        notaPessoal:
+          description: Opcional; número entre 0 e 10, ou null.
+          oneOf:
+            - type: number
+              minimum: 0
+              maximum: 10
+            - type: 'null'
+        horasJogadas:
+          type: number
+          minimum: 0
+        dataCompra:
+          type: string
+          format: date
+          example: '2026-04-14'
+        precoPago:
+          type: number
+          minimum: 0
+          description: Obrigatório; valor pago (>= 0).
+        moeda:
+          type: string
+          example: BRL
+        detalhesMidia:
+          description: |
+            Deve ser compatível com `tipoMidia`. Para `digital`, apenas campos digitais;
+            para `fisica`, apenas campos físicos.
+          oneOf:
+            - $ref: '#/components/schemas/DetalhesMidiaDigital'
+            - $ref: '#/components/schemas/DetalhesMidiaFisica'
+    Jogo:
+      allOf:
+        - type: object
+          required: [id]
+          properties:
+            id:
+              type: integer
+              description: Identificador numérico gerado pelo servidor.
+        - $ref: '#/components/schemas/JogoCadastroRequest'
+    ValidationErrorItem:
+      type: object
+      required: [field, code, message]
+      properties:
+        field:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+    ValidationErrorResponse:
+      type: object
+      required: [errors]
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorItem'

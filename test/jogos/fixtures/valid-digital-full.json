@@ -1,0 +1,16 @@
+{
+  "titulo": "The Witcher 3",
+  "plataforma": "PS5",
+  "tipoMidia": "digital",
+  "status": "jogando",
+  "notaPessoal": 9.5,
+  "horasJogadas": 42,
+  "dataCompra": "2026-04-14",
+  "precoPago": 79.9,
+  "moeda": "BRL",
+  "detalhesMidia": {
+    "lojaDigital": "PSN",
+    "licencaTipo": "compra",
+    "statusLicenca": "ativa"
+  }
+}

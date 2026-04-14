@@ -1,0 +1,12 @@
+{
+  "titulo": "Hollow Knight",
+  "plataforma": "PC",
+  "tipoMidia": "digital",
+  "status": "zerado",
+  "precoPago": 0,
+  "detalhesMidia": {
+    "lojaDigital": "Steam",
+    "licencaTipo": "compra",
+    "statusLicenca": "ativa"
+  }
+}
